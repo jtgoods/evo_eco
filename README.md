@@ -9,7 +9,11 @@ This project is an exploration of the "Evolutionary Arms Race." It serves as a d
 Inspired by the mission of **Silurian** and the **Aurora paper**, this simulation aims to bridge the gap between biological theory and computational infrastructure. While many systems ignore 90% of available environmental data, this project seeks to eventually build "hidden layers" of information that only evolved agents can decode.
 
 ## Phase I: Technical Specification (The Seed)
-Currently, the simulation is in its foundational phase, focusing on the stochastic stability of a population under metabolic pressure.Inheritance Logic: Offspring inherit the metabolism trait from their parent.Genetic Drift: A $\pm 10\%$ mutation rate is applied to the metabolism of newborns to ensure trait variance.The Malthusian Gate: The "Food Rain" is currently static, creating a resource-limited environment that favors lower-metabolism (energy-efficient) agents.Telemetry: The system logs real-time Average Metabolism to observe phenotypic shifts in the population over time.
+Currently, the simulation is in its foundational phase, focusing on the stochastic stability of a population under metabolic pressure.
+* Inheritance Logic: Offspring inherit the metabolism trait from their parent.
+* Genetic Drift: A $\pm 10\%$ mutation rate is applied to the metabolism of newborns to ensure trait variance.
+* The Malthusian Gate: The "Food Rain" is currently static, creating a resource-limited environment that favors lower-metabolism (energy-efficient) agents.
+* Telemetry: The system logs real-time Average Metabolism to observe phenotypic shifts in the population over time.
 
 ##  Current Features
 * **Bio-Logic Agents:** Organisms with attributes for energy, fatigue, and position.
