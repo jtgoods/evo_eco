@@ -1,11 +1,12 @@
 import random
 import time
 import os
+import matplotlib.pyplot as plt
 
 class Organism:
     def __init__(self, x, y, metabolism = None):
         self.x, self.y = x, y
-        self.energy = 19 # starting energy
+        self.energy = 33 # starting energy
         self.is_alive = True
 
         # If no metabolism is passed (Day 0), pick a random one
@@ -57,12 +58,16 @@ class World:
                 child = org.reproduce()
                 if child:
                     newborns.append(child)
-
+        
         # Add the newborns to the population
         self.population.extend(newborns)
 
         # 3. Remove the dead
         self.population = [o for o in self.population if o.is_alive]
+        
+        # Add a 10% chance of a new plant appearing every day
+        if random.random() < 0.10:
+            self.food.append((random.randint(0, self.size-1), random.randint(0, self.size-1)))
 
     def display(self):
         # Create a blank grid
@@ -81,16 +86,55 @@ class World:
             return 0
         total = sum(o.metabolism for o in self.population)
         return total / len(self.population)
-    
+
+history = {
+    'days': [],           # [0, 1, 2, 3, ...]
+    'population': [],     # [3, 4, 5, 6, 4, ...]
+    'food': [],          # [5, 6, 5, 7, ...]
+    'avg_metabolism': [] # [1.0, 0.98, 1.02, ...]
+}
+
+
 # --- RUNNING THE SIMULATION ---
 my_world = World(size=10, num_orgs=3)
 
 for day in range(50):
     print(f"\n--- DAY {day} ---")
-    # In your display method or run loop:
     avg_met = my_world.get_avg_metabolism()
     print(f"Population: {len(my_world.population)} | Avg Metabolism: {avg_met:.3f}")
+    
     os.system('cls' if os.name == 'nt' else 'clear') 
     my_world.display()
+    
+    history['days'].append(day)
+    history['population'].append(len(my_world.population))
+    history['food'].append(len(my_world.food))
+    history['avg_metabolism'].append(avg_met)
+    
     my_world.update()
     time.sleep(1) # Slows it down so you can watch
+
+plt.figure(figsize=(12, 5))
+
+# Left graph: Population and Food over time
+plt.subplot(1, 2, 1)
+plt.plot(history['days'], history['population'], label='Population', color='blue')
+plt.plot(history['days'], history['food'], label='Food', color='green')
+plt.xlabel('Days')
+plt.ylabel('Count')
+plt.title('Population Dynamics')
+plt.legend()
+plt.grid(True, alpha=0.3)
+
+# Right graph: Metabolism evolution over time
+plt.subplot(1, 2, 2)
+plt.plot(history['days'], history['avg_metabolism'], label='Avg Metabolism', color='red')
+plt.xlabel('Days')
+plt.ylabel('Metabolism')
+plt.title('Metabolic Evolution')
+plt.legend()
+plt.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('evo_eco_results.png', dpi=150)
+plt.show()
