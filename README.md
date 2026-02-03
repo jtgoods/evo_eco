@@ -32,7 +32,7 @@ Currently, the simulation is in its foundational phase, focusing on the stochast
 * **The Web Simulacrum:** Moving from terminal output to a tactile, 8-bit interactive experience for the web.
 
 ##  Getting Started
-1. Clone the repo: `git clone https://github.com/YOUR_USERNAME/evo_eco.git`
+1. Clone the repo: `git clone https://github.com/jtgoods/evo_eco.git`
 2. Run the simulation: `python evo_eco.py`
 
 ##  License
