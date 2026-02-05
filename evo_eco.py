@@ -267,8 +267,10 @@ class EvolutionaryWorld:
                             depth_layer['chemicals']['ammonia'] += random.uniform(0.2, 1.0)
                             depth_layer['chemicals']['methane'] += random.uniform(0.1, 0.8)
                         
-                        # Organic matter from dead organisms
-                        if len(self.population) > 5:  # Only when life is established
+                        # Organic matter background production and from dead organisms
+                        # Always have a small baseline so early organic_matter feeders aren't starved
+                        depth_layer['chemicals']['organic_matter'] += random.uniform(0.02, 0.1)
+                        if len(self.population) > 5:  # Additional input when life is established
                             depth_layer['chemicals']['organic_matter'] += random.uniform(0.1, 0.5)
                         
                         # Cap concentrations
