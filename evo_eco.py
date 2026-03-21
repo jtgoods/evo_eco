@@ -4,7 +4,9 @@ import os
 import matplotlib.pyplot as plt
 
 class Organism:
+    """Represents an animal(for now), or any organism that can move(non-plants)."""
     def __init__(self, x, y, metabolism = None):
+        """Initialize a new Organism with x and y coordinates on the "Earth" grid, and a metabolism == None."""
         self.x, self.y = x, y
         self.energy = 33 # starting energy
         self.is_alive = True
@@ -36,7 +38,9 @@ class Organism:
         return None
 
 class World:
+    """Represents the Earth, as a grid of x by y size."""
     def __init__(self, size, num_orgs):
+        """Initializes the Earth as a grid with specified size and a given number of Organisms."""
         self.size = size
         self.population = [Organism(random.randint(0, size-1), random.randint(0, size-1)) for _ in range(num_orgs)]
         self.food = [(random.randint(0, size-1), random.randint(0, size-1)) for _ in range(5)]
