@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 class Organism:
     """Represents an animal(for now), or any organism that can move(non-plants)."""
     def __init__(self, x, y, metabolism = None):
-        """Initialize a new Organism with x and y coordinates on the "Earth" grid, and a metabolism == None."""
+        """Initialize a new Organism with x and y coordinates on the "Earth" grid, and a metabolism == None for organisms "born at time zero. Other organisms can inherit metabolism from their parent organisms."""
         self.x, self.y = x, y
         self.energy = 33 # starting energy
         self.is_alive = True
